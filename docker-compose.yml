@@ -4,6 +4,7 @@ services:
   app:
     build:
       context: .
+      dockerfile: ./docker/django/Dockerfile
       args:
         - DEV=true
     ports:
@@ -23,7 +24,9 @@ services:
       - db
 
   db:
-    image: mysql:latest
+    build:
+      context: .
+      dockerfile: ./docker/mysql/Dockerfile
     volumes:
       - dev-db-data:/var/lib/mysql
     environment:

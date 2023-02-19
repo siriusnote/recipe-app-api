@@ -20,7 +20,7 @@ class Command(BaseCommand):
             try:
                 self.check(databases=["default"])
                 db_up = True
-            except (MysqlOpError, OperationalError) as e:
+            except (MysqlOpError, OperationalError):
                 self.stdout.write('Database unavailable, waiting 1 second...')
                 time.sleep(1)
 
