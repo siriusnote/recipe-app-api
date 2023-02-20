@@ -55,7 +55,7 @@ class PublicUserAPiTests(TestCase):
         """Test an error is returned if password less than 5 chars"""
         payload = {
             'email': 'test@example.com',
-            'passowrd': 'pw',
+            'password': 'pw',
             'name': 'Test name',
         }
         res = self.client.post(CREATE_USER_URL, payload)
@@ -94,9 +94,9 @@ class PublicUserAPiTests(TestCase):
         self.assertNotIn('token', res.data)
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def test_create_token_blank_passowrd(self):
+    def test_create_token_blank_password(self):
         """Test posting a blank password returns an error."""
-        payload = {'email': 'test@example', "password": ""}
+        payload = {'email': 'test@example.com', 'password': ''}
         res = self.client.post(TOKEN_URL, payload)
 
         self.assertNotIn('token', res.data)
